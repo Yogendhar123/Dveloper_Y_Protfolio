@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { navLinks } from '../constants';
-import { useTheme } from '../context/ThemeContext';
-import { motion } from 'framer-motion';
-
+import React, { useState, useEffect } from "react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { navLinks } from "../constants";
+import { useTheme } from "../context/ThemeContext";
+import { motion } from "framer-motion";
+import LOGOHERO from "../assests/logo.png";
 interface HeaderProps {
   scrollY: number;
 }
@@ -12,7 +12,7 @@ export const Header: React.FC<HeaderProps> = ({ scrollY }) => {
   const [toggle, setToggle] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
-  
+
   useEffect(() => {
     setIsScrolled(scrollY > 50);
   }, [scrollY]);
@@ -21,16 +21,16 @@ export const Header: React.FC<HeaderProps> = ({ scrollY }) => {
     setToggle(false);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <motion.nav 
+    <motion.nav
       className={`fixed w-full top-0 z-20 px-6 sm:px-16 py-5 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/70 dark:bg-dark/70 backdrop-blur-lg shadow-md' 
-          : 'bg-transparent'
+        isScrolled
+          ? "bg-white/70 dark:bg-dark/70 backdrop-blur-lg shadow-md"
+          : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -38,9 +38,14 @@ export const Header: React.FC<HeaderProps> = ({ scrollY }) => {
     >
       <div className="w-full max-w-7xl mx-auto flex justify-between items-center">
         <a href="#" className="flex items-center gap-2">
-          <span className="text-lg sm:text-xl font-bold text-primary-700 dark:text-primary-400">
+          <img
+            src={LOGOHERO}
+            className="h-[40px] w-[40px] rounded-full shadow-md"
+          />
+
+          {/* <span className="text-lg sm:text-xl font-bold text-primary-700 dark:text-primary-400">
             Yogendhar
-          </span>
+          </span> */}
         </a>
 
         <div className="flex items-center gap-8">
