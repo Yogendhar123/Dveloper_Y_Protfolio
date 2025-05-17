@@ -17,6 +17,13 @@ import {
 } from "lucide-react";
 import eduLearn from "../assests/edulearn.jpg";
 import loadmatcher from "../assests/loadmatch.png";
+import gov from "../assests/govImg.jpeg";
+import inc from "../assests/insurence.jpeg";
+import fmcg from "../assests/fastMoving.jpeg";
+import fb from "../assests/foode.jpeg";
+import tel from "../assests/telCOm.jpeg";
+import offer from "../assests/offerings.jpeg";
+import { useMemo } from "react";
 export const tagColorMap = {
   blue: {
     bg: "bg-blue-100",
@@ -72,66 +79,94 @@ export const technologies = [
     name: "HTML 5",
     icon: FileCode2,
     color: "#E34F26",
+    proficiency: 100,
+    category: "Frontend",
   },
   {
     name: "CSS 3",
     icon: PenTool,
     color: "#1572B6",
+    proficiency: 100,
+    category: "Frontend",
   },
   {
     name: "Bootstrap",
     icon: Layers,
     color: "#7952B3",
-  },
-  {
-    name: "JavaScript",
-    icon: FileJson,
-    color: "#F7DF1E",
-  },
-  {
-    name: "TypeScript",
-    icon: FileType,
-    color: "#3178C6",
-  },
-  {
-    name: "React JS",
-    icon: Component,
-    color: "#61DAFB",
-  },
-  {
-    name: "React Material-UI",
-    icon: Component,
-    color: "#0081CB",
-  },
-  {
-    name: "Angular",
-    icon: Code,
-    color: "#DD0031",
-  },
-  {
-    name: "Redux Toolkit",
-    icon: BrainCircuit,
-    color: "#764ABC",
+    proficiency: 100,
+    category: "Frontend",
   },
   {
     name: "Tailwind CSS",
     icon: PenTool,
     color: "#38B2AC",
+    proficiency: 100,
+    category: "CSS",
   },
+  {
+    name: "JavaScript",
+    icon: FileJson,
+    color: "#F7DF1E",
+    proficiency: 80,
+    category: "Frontend",
+  },
+  {
+    name: "React JS",
+    icon: Component,
+    color: "#61DAFB",
+    proficiency: 100,
+    category: "Frontend",
+  },
+  {
+    name: "TypeScript",
+    icon: FileType,
+    color: "#3178C6",
+    proficiency: 75,
+    category: "Frontend",
+  },
+
+  {
+    name: "React Material-UI",
+    icon: Component,
+    color: "#0081CB",
+    proficiency: 100,
+    category: "Frontend",
+  },
+  {
+    name: "Angular",
+    icon: Code,
+    color: "#DD0031",
+    proficiency: 75,
+    category: "Frontend",
+  },
+  {
+    name: "Redux",
+    icon: BrainCircuit,
+    color: "#764ABC",
+    proficiency: 100,
+    category: "Frontend",
+  },
+
   {
     name: "Node JS",
     icon: Cpu,
     color: "#339933",
+    proficiency: 70,
+    category: "Backend",
   },
   {
     name: "MongoDB",
     icon: Database,
     color: "#47A248",
+    proficiency: 75,
+    category: "Database",
   },
   {
     name: "Git",
     icon: GitBranch,
     color: "#F05032",
+    proficiency: 85,
+    category: "Tools",
   },
 ];
 
@@ -176,7 +211,7 @@ export const projects = [
         color: "pink",
       },
     ],
-    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
+    image: gov,
     source_code_link: "https://www.eci.gov.in/",
   },
   {
@@ -197,7 +232,7 @@ export const projects = [
         color: "pink",
       },
     ],
-    image: "https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg",
+    image: inc,
     source_code_link: "https://www.generali.com/",
   },
   {
@@ -218,7 +253,7 @@ export const projects = [
         color: "pink",
       },
     ],
-    image: "https://images.pexels.com/photos/7681091/pexels-photo-7681091.jpeg",
+    image: fmcg,
     source_code_link: "#",
   },
   {
@@ -239,7 +274,7 @@ export const projects = [
         color: "pink",
       },
     ],
-    image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+    image: fb,
     source_code_link: "#",
   },
   {
@@ -260,7 +295,7 @@ export const projects = [
         color: "pink",
       },
     ],
-    image: "https://images.pexels.com/photos/2422293/pexels-photo-2422293.jpeg",
+    image: tel,
     source_code_link: "#",
   },
   {
@@ -281,7 +316,7 @@ export const projects = [
         color: "pink",
       },
     ],
-    image: "https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg",
+    image: offer,
     source_code_link: "#",
   },
 ];
@@ -337,4 +372,41 @@ export const personalProjects = [
     image: loadmatcher,
     source_code_link: "https://loadmatchapp.netlify.app/",
   },
+];
+export const additionalSkills = [
+  "Responsive Design",
+  "Cross-browser Compatibility",
+  "Web Accessibility",
+  "Performance Optimization",
+  "RESTful APIs",
+  "UI/UX Implementation",
+  "Agile/Scrum Methodology",
+  "PowerBI",
+];
+export const skillCategories = [
+  { name: "Frontend", color: "#3B82F6" },
+  { name: "Backend", color: "#10B981" },
+  { name: "Design", color: "#EC4899" },
+  { name: "Tools", color: "#F59E0B" },
+  { name: "Methodologies", color: "#8B5CF6" },
+];
+// Connections between technologies for the skill graph.
+// Make sure each 'source' and 'target' matches the 'name' field in the technologies array exactly.
+export const skillConnections = [
+  { source: "HTML 5", target: "CSS 3" },
+  { source: "HTML 5", target: "JavaScript" },
+  { source: "CSS 3", target: "Tailwind CSS" },
+  { source: "CSS 3", target: "Bootstrap" },
+  { source: "JavaScript", target: "TypeScript" },
+  { source: "JavaScript", target: "React JS" },
+  { source: "JavaScript", target: "Angular" },
+  { source: "JavaScript", target: "Node JS" },
+  { source: "TypeScript", target: "React JS" },
+  { source: "TypeScript", target: "Angular" },
+  { source: "React JS", target: "Redux" },
+  { source: "React JS", target: "React Material-UI" },
+  { source: "React JS", target: "Tailwind CSS" },
+  { source: "Node JS", target: "MongoDB" },
+  { source: "Git", target: "JavaScript" },
+  { source: "Git", target: "Node JS" },
 ];

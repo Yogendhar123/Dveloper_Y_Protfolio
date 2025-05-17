@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, Download } from "lucide-react";
 import profile from "../assests/photo.jpeg";
 import resume from "../assests/Yogendhar_resume.pdf";
 import { useEffect } from "react";
 import { Mail, Phone, MapPin, Send, Github } from "lucide-react";
+// import { experienceYears } from "../constants";
 
 export const Hero: React.FC = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -58,6 +59,13 @@ export const Hero: React.FC = () => {
     link.click();
     document.body.removeChild(link);
   };
+  const experienceYears: string = useMemo<string>(() => {
+    const joinDate: Date = new Date("2022-02-17");
+    const now: Date = new Date();
+    const diff: number = now.getTime() - joinDate.getTime();
+    const diffYears: number = diff / (1000 * 60 * 60 * 24 * 365.25); // account for leap years
+    return diffYears.toFixed(1); // e.g., "3.3"
+  }, []);
 
   return (
     <section className="relative w-full h-screen mx-auto overflow-hidden">
@@ -106,9 +114,9 @@ export const Hero: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              I develop responsive UIs and web applications with over 3 years of
-              experience, delivering efficient, scalable solutions that meet
-              client needs.
+              I develop responsive UIs and web applications with over{" "}
+              {experienceYears} years of experience, delivering efficient,
+              scalable solutions that meet client needs.
             </motion.p>
 
             <motion.div

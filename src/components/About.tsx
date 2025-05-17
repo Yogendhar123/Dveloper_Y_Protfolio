@@ -1,7 +1,8 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Code, Laptop, Network } from 'lucide-react';
+import React, { useMemo } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Code, Laptop, Network } from "lucide-react";
+// import { experienceYears } from "../constants";
 
 export const About: React.FC = () => {
   const [ref, inView] = useInView({
@@ -13,7 +14,13 @@ export const About: React.FC = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
-
+  const experienceYears: string = useMemo<string>(() => {
+    const joinDate: Date = new Date("2022-02-17");
+    const now: Date = new Date();
+    const diff: number = now.getTime() - joinDate.getTime();
+    const diffYears: number = diff / (1000 * 60 * 60 * 24 * 365.25); // account for leap years
+    return diffYears.toFixed(1); // e.g., "3.3"
+  }, []);
   return (
     <section id="about" className="py-20 bg-white dark:bg-dark">
       <div className="max-w-7xl mx-auto px-6 sm:px-16">
@@ -26,10 +33,12 @@ export const About: React.FC = () => {
           className="text-center"
         >
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            About <span className="text-primary-600 dark:text-primary-400">Me</span>
+            About{" "}
+            <span className="text-primary-600 dark:text-primary-400">Me</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mx-auto max-w-2xl mb-12">
-            A passionate Frontend Developer with 3+ years of experience crafting responsive and user-friendly web experiences.
+            A passionate Frontend Developer with {experienceYears} years of
+            experience crafting responsive and user-friendly web experiences.
           </p>
         </motion.div>
 
@@ -67,13 +76,25 @@ export const About: React.FC = () => {
             Professional Summary
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            As a dedicated frontend developer with over 3 years of experience, I specialize in building responsive user interfaces and web applications using React.js and Angular. My expertise lies in creating seamless user experiences across devices and implementing complex UI components with modern design principles.
+            As a dedicated frontend developer with over {experienceYears} years
+            of experience, I specialize in building responsive user interfaces
+            and web applications using React.js and Angular. My expertise lies
+            in creating seamless user experiences across devices and
+            implementing complex UI components with modern design principles.
           </p>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            I have a strong foundation in JavaScript, TypeScript, HTML, and CSS, complemented by experience with various frontend frameworks and libraries. My approach focuses on writing clean, maintainable code while ensuring optimal performance and accessibility.
+            I have a strong foundation in JavaScript, TypeScript, HTML, and CSS,
+            complemented by experience with various frontend frameworks and
+            libraries. My approach focuses on writing clean, maintainable code
+            while ensuring optimal performance and accessibility.
           </p>
           <p className="text-gray-600 dark:text-gray-400">
-            Throughout my career at TCS, I've contributed to diverse projects in telecom, insurance, FMCG, and government sectors, working with cross-functional teams to deliver high-quality products that meet client needs. I'm passionate about staying updated with the latest web technologies and best practices to implement innovative solutions.
+            Throughout my career at TCS, I've contributed to diverse projects in
+            telecom, insurance, FMCG, and government sectors, working with
+            cross-functional teams to deliver high-quality products that meet
+            client needs. I'm passionate about staying updated with the latest
+            web technologies and best practices to implement innovative
+            solutions.
           </p>
         </motion.div>
       </div>
@@ -84,17 +105,20 @@ export const About: React.FC = () => {
 const aboutCards = [
   {
     title: "Frontend Development",
-    description: "Expertise in building responsive UIs with React.js and Angular, ensuring seamless user experiences across devices.",
+    description:
+      "Expertise in building responsive UIs with React.js and Angular, ensuring seamless user experiences across devices.",
     icon: Code,
   },
   {
     title: "UI/UX Implementation",
-    description: "Skilled at translating design mockups into functional interfaces using modern CSS frameworks and techniques.",
+    description:
+      "Skilled at translating design mockups into functional interfaces using modern CSS frameworks and techniques.",
     icon: Laptop,
   },
   {
     title: "Integration Specialist",
-    description: "Experience integrating frontend applications with various backend services, APIs, and third-party tools.",
+    description:
+      "Experience integrating frontend applications with various backend services, APIs, and third-party tools.",
     icon: Network,
   },
 ];

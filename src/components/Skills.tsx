@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { technologies } from "../constants";
+import { technologies, additionalSkills } from "../constants";
+import SkillRadarChart from "./SkillRadarChart";
+import SkillNetworkGraph from "./SkillNetworkGraph";
+import SkillsTabs from "./SkillsTabs";
 
 export const Skills: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const [activeTab, setActiveTab] = useState("Grid");
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Detect dark mode
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains("dark");
+    setIsDarkMode(isDark);
+
+    // Optional: Listen for changes in dark mode
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          setIsDarkMode(document.documentElement.classList.contains("dark"));
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <section id="skills" className="py-20 bg-white dark:bg-dark">
@@ -30,41 +57,91 @@ export const Skills: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-          {technologies.map((technology, index) => {
-            const Icon = technology.icon;
+        <SkillsTabs
+          tabs={["Grid", "Radar", "Network"]}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          isDarkMode={isDarkMode}
+        />
 
-            return (
-              <motion.div
-                key={technology.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex flex-col items-center"
-              >
+        {activeTab === "Grid" && (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            {technologies.map((technology, index) => {
+              const Icon = technology.icon;
+
+              return (
                 <motion.div
-                  className="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-gray-900 shadow-card flex items-center justify-center mb-3 hover:shadow-card-hover transition-shadow"
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0px 20px 30px -10px rgba(0, 0, 0, 0.2)",
-                  }}
-                  style={{
-                    boxShadow: "0px 10px 25px -10px rgba(0, 0, 0, 0.1)",
-                  }}
+                  key={technology.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                  }
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex flex-col items-center"
                 >
-                  <Icon
-                    size={32}
-                    style={{ color: technology.color }}
-                    strokeWidth={1.5}
-                  />
+                  <motion.div
+                    className="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-gray-900 shadow-card flex items-center justify-center mb-3 hover:shadow-card-hover transition-shadow"
+                    whileHover={{
+                      scale: 1.05,
+                      boxShadow: "0px 20px 30px -10px rgba(0, 0, 0, 0.2)",
+                    }}
+                    style={{
+                      boxShadow: "0px 10px 25px -10px rgba(0, 0, 0, 0.1)",
+                    }}
+                  >
+                    <Icon
+                      size={32}
+                      style={{ color: technology.color }}
+                      strokeWidth={1.5}
+                    />
+                  </motion.div>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {technology.name}
+                  </p>
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 h-1.5 mt-2 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full rounded-full"
+                      style={{ backgroundColor: technology.color }}
+                      initial={{ width: 0 }}
+                      animate={
+                        inView
+                          ? { width: `${technology.proficiency}%` }
+                          : { width: 0 }
+                      }
+                      transition={{ duration: 1, delay: index * 0.1 + 0.3 }}
+                    />
+                  </div>
                 </motion.div>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {technology.name}
-                </p>
-              </motion.div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
+
+        {activeTab === "Radar" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center my-10"
+          >
+            <div className="w-full max-w-3xl">
+              <SkillRadarChart isDarkMode={isDarkMode} />
+            </div>
+          </motion.div>
+        )}
+
+        {activeTab === "Network" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center my-10"
+          >
+            <div className="w-full">
+              <SkillNetworkGraph isDarkMode={isDarkMode} />
+            </div>
+          </motion.div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -95,13 +172,4 @@ export const Skills: React.FC = () => {
   );
 };
 
-const additionalSkills = [
-  "Responsive Design",
-  "Cross-browser Compatibility",
-  "Web Accessibility",
-  "Performance Optimization",
-  "RESTful APIs",
-  "UI/UX Implementation",
-  "Agile/Scrum Methodology",
-  "PowerBI",
-];
+export default Skills;
