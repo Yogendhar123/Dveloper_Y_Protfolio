@@ -24,6 +24,7 @@ import fb from "../assests/foode.jpeg";
 import tel from "../assests/telCOm.jpeg";
 import offer from "../assests/offerings.jpeg";
 import { useMemo } from "react";
+import cd from "../assests/DC.png";
 export const tagColorMap = {
   blue: {
     bg: "bg-blue-100",
@@ -371,6 +372,31 @@ export const personalProjects = [
     ],
     image: loadmatcher,
     source_code_link: "https://loadmatchapp.netlify.app/",
+  },
+  {
+    name: "Document Comparsion",
+    description:
+      "The Document Comparison feature automatically scans two versions of a document to identify every insertion, deletion, or modification; organizes each change by page number and shows the original and revised text side-by-side; lets users filter and browse changes in a list; and provides deep-link buttons that jump the embedded PDF viewer to the exact page and highlight the passage in context—making it easy to see what changed, where, and share or cite specific revisions.",
+    tags: [
+      {
+        name: "React",
+        color: "blue",
+      },
+      {
+        name: "typescript",
+        color: "green",
+      },
+      {
+        name: "git",
+        color: "pink",
+      },
+      {
+        name: "TailwindCss",
+        color: "violet",
+      },
+    ],
+    image: cd,
+    source_code_link: "https://documencomparsion.netlify.app/",
   },
 ];
 export const additionalSkills = [
