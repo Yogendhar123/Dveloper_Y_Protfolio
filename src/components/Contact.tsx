@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Mail, Phone, MapPin, Send, Github } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -26,21 +27,49 @@ export const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+    console.log("formData before sending:", formData); // Debug
+
+    const templateParamsAdmin = {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message,
+      to_email: "yogendharbolisetti@gmail.com", // Ensure this is used in your EmailJS template
+    };
+
+    const templateParamsSender = {
+      to_name: formData.name,
+      user_email: formData.email, // EmailJS expects 'user_email' by default
+      from_name: "Yogendhar Sri Ram",
+      message: "Thank you for contacting us! We’ll get back to you shortly.",
+    };
+
+    try {
+      await emailjs.send(
+        "service_yvrlzsm",
+        "template_dh8sxs6",
+        templateParamsAdmin,
+        "nB-2p0y-hWUTHsKaM"
+      );
+      console.log("Admin email sent");
+
+      await emailjs.send(
+        "service_yvrlzsm",
+        "template_f92axv9",
+        templateParamsSender,
+        "nB-2p0y-hWUTHsKaM"
+      );
+      console.log("Auto-reply sent");
+
+      alert("Message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
-
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
-    }, 1500);
+      setIsSubmitted(true);
+    } catch (error: any) {
+      console.error("Email send failed:", error);
+      alert("Failed to send message. Please try again.");
+    }
   };
 
   return (
