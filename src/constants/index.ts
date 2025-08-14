@@ -25,6 +25,7 @@ import tel from "../assests/telCOm.jpeg";
 import offer from "../assests/offerings.jpeg";
 import { useMemo } from "react";
 import cd from "../assests/DC.png";
+import stockimg from "../assests/stockvision.png"
 export const tagColorMap = {
   blue: {
     bg: "bg-blue-100",
@@ -397,6 +398,31 @@ export const personalProjects = [
     ],
     image: cd,
     source_code_link: "https://documencomparsion.netlify.app/",
+  },
+   {
+    name: "StockVision Lite",
+    description:
+      "A lightweight stock visualization and analysis demo application that highlights interactive UI, responsive charts, and statistical insights using static sample data.This POC replicates a real-world stock tracking dashboard experience but is not connected to actual market feeds — designed purely to showcase functionality and design capabilities.",
+    tags: [
+      {
+        name: "React",
+        color: "blue",
+      },
+      {
+        name: "typescript",
+        color: "green",
+      },
+      {
+        name: "git",
+        color: "pink",
+      },
+      {
+        name: "TailwindCss",
+        color: "violet",
+      },
+    ],
+    image: stockimg,
+    source_code_link: "https://stockvisionlite.netlify.app/",
   },
 ];
 export const additionalSkills = [
