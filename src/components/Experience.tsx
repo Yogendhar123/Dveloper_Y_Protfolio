@@ -1,14 +1,14 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { 
-  VerticalTimeline, 
-  VerticalTimelineElement 
-} from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
-import { Briefcase } from 'lucide-react';
-import { experiences } from '../constants';
-import { useTheme } from '../context/ThemeContext';
+import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import { Briefcase } from "lucide-react";
+import { experiences } from "../constants";
+import { useTheme } from "../context/ThemeContext";
 
 export const Experience: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -23,12 +23,12 @@ export const Experience: React.FC = () => {
   };
 
   return (
-    <section 
-      id="experience" 
+    <section
+      id="experience"
       className="py-20 bg-gray-50 dark:bg-gray-900/50 relative overflow-hidden"
     >
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-50/30 to-white/0 dark:from-primary-900/10 dark:to-transparent pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto px-6 sm:px-16 relative">
         <motion.div
           ref={ref}
@@ -39,34 +39,46 @@ export const Experience: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Work <span className="text-primary-600 dark:text-primary-400">Experience</span>
+            Work{" "}
+            <span className="text-primary-600 dark:text-primary-400">
+              Experience
+            </span>
           </h2>
+
           <p className="text-gray-600 dark:text-gray-400 mx-auto max-w-2xl">
-            My professional journey in frontend development and the projects I've worked on.
+            A snapshot of my journey as a{" "}
+            <span className="font-semibold">Full-Stack Developer</span>,
+            delivering scalable applications using{" "}
+            <span className="font-medium">
+              React, Angular, Node.js, Express, MongoDB, and Azure
+            </span>
+            . I’ve contributed to impactful projects across telecom, insurance,
+            FMCG, and government sectors — creating modern, high-performance web
+            solutions.
           </p>
         </motion.div>
 
-        <VerticalTimeline lineColor={isDarkMode ? '#4c1d95' : '#8b5cf6'}>
+        <VerticalTimeline lineColor={isDarkMode ? "#4c1d95" : "#8b5cf6"}>
           {experiences.map((experience, index) => (
             <VerticalTimelineElement
               key={index}
               contentStyle={{
-                background: isDarkMode ? '#1f2937' : '#ffffff',
-                color: isDarkMode ? '#f3f4f6' : '#1f2937',
-                boxShadow: '0px 10px 25px -10px rgba(0, 0, 0, 0.1)',
-                borderRadius: '1rem',
-                border: isDarkMode ? '1px solid #374151' : 'none',
+                background: isDarkMode ? "#1f2937" : "#ffffff",
+                color: isDarkMode ? "#f3f4f6" : "#1f2937",
+                boxShadow: "0px 10px 25px -10px rgba(0, 0, 0, 0.1)",
+                borderRadius: "1rem",
+                border: isDarkMode ? "1px solid #374151" : "none",
               }}
-              contentArrowStyle={{ 
-                borderRight: isDarkMode 
-                  ? '7px solid #1f2937' 
-                  : '7px solid #ffffff' 
+              contentArrowStyle={{
+                borderRight: isDarkMode
+                  ? "7px solid #1f2937"
+                  : "7px solid #ffffff",
               }}
               date={experience.date}
               dateClassName="text-gray-600 dark:text-gray-400"
               iconStyle={{
-                background: isDarkMode ? '#4c1d95' : '#8b5cf6',
-                color: '#ffffff',
+                background: isDarkMode ? "#4c1d95" : "#8b5cf6",
+                color: "#ffffff",
               }}
               icon={<Briefcase />}
             >

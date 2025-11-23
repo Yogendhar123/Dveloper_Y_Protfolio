@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, Download } from "lucide-react";
 import profile from "../assests/photo.jpeg";
-import resume from "../assests/Yogendhar_resume.pdf";
+import resume from "../assests/Full_Stack_Developer_Yogendhar_Resume.pdf";
 import { useEffect } from "react";
 import { Mail, Phone, MapPin, Send, Github } from "lucide-react";
 // import { experienceYears } from "../constants";
@@ -54,7 +54,7 @@ export const Hero: React.FC = () => {
     console.log("enter");
     const link = document.createElement("a");
     link.href = resume; // imported path
-    link.setAttribute("download", "Yogendhar_resume.pdf");
+    link.setAttribute("download", "Full_Stack_Developer_Yogendhar_Resume.pdf");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -102,21 +102,24 @@ export const Hero: React.FC = () => {
                 transition={{ duration: 0.7, delay: 0.4 }}
               >
                 <span className="text-primary-500 dark:text-primary-300 font-medium">
-                  Frontend Developer
+                  Full-Stack Developer
                 </span>{" "}
-                specializing in React & Angular
+                creating scalable React & Angular applications powered by Node, Python Azure,
+                and modern AI workflows.
               </motion.p>
             </div>
-
             <motion.p
               className="mt-6 max-w-lg mx-auto md:mx-0 text-gray-600 dark:text-gray-400"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              I develop responsive UIs and web applications with over{" "}
-              {experienceYears} years of experience, delivering efficient,
-              scalable solutions that meet client needs.
+              I’m a full-stack developer with {experienceYears} years of
+              experience building scalable web applications using React,
+              Angular, Node.js, and Python. I specialize in creating
+              high-performance UIs, secure Azure-based architectures, and modern
+              AI solutions including RAG pipelines, agentic workflows, and
+              document intelligence systems.
             </motion.p>
 
             <motion.div

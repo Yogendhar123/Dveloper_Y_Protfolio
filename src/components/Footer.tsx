@@ -1,11 +1,11 @@
-import React from 'react';
-import { ChevronUp } from 'lucide-react';
+import React from "react";
+import { ChevronUp } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -16,11 +16,12 @@ export const Footer: React.FC = () => {
           <div className="mb-6 md:mb-0">
             <h3 className="text-lg font-semibold mb-2">Yogendhar Sri Ram</h3>
             <p className="text-sm text-gray-400 max-w-md">
-              Frontend developer specializing in creating responsive user interfaces and 
-              web applications with modern technologies.
+              Full-Stack Developer specializing in building responsive,
+              high-performance web applications with React, Angular, Node.js,
+              and modern AI-driven workflows.
             </p>
           </div>
-          
+
           <div className="flex flex-col items-center md:items-end">
             <button
               onClick={scrollToTop}
@@ -29,9 +30,10 @@ export const Footer: React.FC = () => {
             >
               <ChevronUp size={20} />
             </button>
-            
+
             <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} Yogendhar Sri Ram. All rights reserved.
+              © {new Date().getFullYear()} Yogendhar Sri Ram. All rights
+              reserved.
             </p>
           </div>
         </div>

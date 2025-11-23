@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Code, Laptop, Network } from "lucide-react";
 // import { experienceYears } from "../constants";
-
+import { BrainCircuit, Cloud } from "lucide-react";
 export const About: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -37,8 +37,10 @@ export const About: React.FC = () => {
             <span className="text-primary-600 dark:text-primary-400">Me</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mx-auto max-w-2xl mb-12">
-            A passionate Frontend Developer with {experienceYears} years of
-            experience crafting responsive and user-friendly web experiences.
+            A passionate Full-Stack Developer with {experienceYears} years of
+            experience building responsive, scalable, and high-performance web
+            applications using React, Angular, Node.js, Python, and modern
+            AI-driven workflows.
           </p>
         </motion.div>
 
@@ -75,26 +77,31 @@ export const About: React.FC = () => {
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
             Professional Summary
           </h3>
+
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            As a dedicated frontend developer with over {experienceYears} years
-            of experience, I specialize in building responsive user interfaces
-            and web applications using React.js and Angular. My expertise lies
-            in creating seamless user experiences across devices and
-            implementing complex UI components with modern design principles.
+            A results-driven Full-Stack Developer with {experienceYears} years
+            of experience building scalable, high-performance applications using
+            React, Angular, Node.js, Python, and modern cloud & AI technologies.
+            I specialize in crafting responsive UIs, intelligent workflows, and
+            secure architectures for enterprise and government clients.
           </p>
+
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            I have a strong foundation in JavaScript, TypeScript, HTML, and CSS,
-            complemented by experience with various frontend frameworks and
-            libraries. My approach focuses on writing clean, maintainable code
-            while ensuring optimal performance and accessibility.
+            My core expertise spans JavaScript, TypeScript, HTML, CSS, React,
+            Angular, Express.js, MongoDB, and Azure services—including MSAL
+            authentication, RBAC, and API integrations. I focus on writing
+            clean, maintainable code while optimizing performance,
+            accessibility, and user experience across devices.
           </p>
+
           <p className="text-gray-600 dark:text-gray-400">
-            Throughout my career at TCS, I've contributed to diverse projects in
-            telecom, insurance, FMCG, and government sectors, working with
-            cross-functional teams to deliver high-quality products that meet
-            client needs. I'm passionate about staying updated with the latest
-            web technologies and best practices to implement innovative
-            solutions.
+            At TCS, I have delivered impactful solutions across telecom,
+            insurance, FMCG, and government sectors. My work includes AI-powered
+            dashboards, agentic RAG workflows, document intelligence systems,
+            SCADA-driven analytics for water utilities, and large-scale
+            citizen-facing portals. I’m passionate about solving real-world
+            problems through innovation, modern UI engineering, and AI-driven
+            automation.
           </p>
         </motion.div>
       </div>
@@ -104,21 +111,34 @@ export const About: React.FC = () => {
 
 const aboutCards = [
   {
-    title: "Frontend Development",
+    title: "Full-Stack Development",
     description:
-      "Expertise in building responsive UIs with React.js and Angular, ensuring seamless user experiences across devices.",
+      "Proficient in building scalable, end-to-end web applications using React, Angular, Node.js, Express, and MongoDB — delivering fast, reliable, and maintainable solutions.",
     icon: Code,
   },
   {
-    title: "UI/UX Implementation",
+    title: "UI/UX Engineering",
     description:
-      "Skilled at translating design mockups into functional interfaces using modern CSS frameworks and techniques.",
+      "Experienced in transforming wireframes and product concepts into polished, high-performance interfaces using modern CSS, responsive design principles, and component-driven architecture.",
     icon: Laptop,
   },
   {
-    title: "Integration Specialist",
+    title: "API Integration & Architecture",
     description:
-      "Experience integrating frontend applications with various backend services, APIs, and third-party tools.",
+      "Specialized in integrating REST APIs, authentication workflows, MSAL (Azure AD), cloud services, and third-party tools to create seamless and secure app ecosystems.",
     icon: Network,
   },
+  {
+    title: "AI & Automation Workflows",
+    description:
+      "Hands-on experience implementing AI-powered features, workflow automation, and modern data processing pipelines that enhance user experience and business productivity.",
+    icon: BrainCircuit, // Change to any icon you prefer
+  },
+  {
+    title: "Cloud & Deployment",
+    description:
+      "Experienced in deploying and managing full-stack applications on Azure with CI/CD, versioning, performance tuning, and secure access configurations.",
+    icon: Cloud,
+  },
 ];
+
