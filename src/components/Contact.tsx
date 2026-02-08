@@ -8,6 +8,7 @@ export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,17 +37,21 @@ export const Contact: React.FC = () => {
       from_name: formData.name,
       from_email: formData.email,
       message: formData.message,
+       phone: formData.phone,
       to_email: "yogendharbolisetti@gmail.com", // Ensure this is used in your EmailJS template
     };
 
     const templateParamsSender = {
       to_name: formData.name,
       user_email: formData.email, // EmailJS expects 'user_email' by default
+        phone: formData.phone,
       from_name: "Yogendhar Sri Ram",
       message: "Thank you for contacting us! We’ll get back to you shortly.",
     };
 
     try {
+      setIsSubmitting(true);
+
       await emailjs.send(
         "service_yvrlzsm",
         "template_dh8sxs6",
@@ -63,12 +68,14 @@ export const Contact: React.FC = () => {
       );
       console.log("Auto-reply sent");
 
-      alert("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
+      // alert("Message sent successfully!");
+      setFormData({ name: "", email: "", phone: "", message: "" });
       setIsSubmitted(true);
     } catch (error: any) {
       console.error("Email send failed:", error);
       alert("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -257,6 +264,25 @@ export const Contact: React.FC = () => {
                       placeholder="john@example.com"
                     />
                   </div>
+                   <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                    >
+                      Your Phone Number
+                    </label>
+                    <input
+                      type="phone"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+
 
                   <div>
                     <label
@@ -271,7 +297,7 @@ export const Contact: React.FC = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      rows={5}
+                      rows={3}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
                       placeholder="Your message..."
                     />
